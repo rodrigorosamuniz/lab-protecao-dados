@@ -35,7 +35,7 @@ Nao e necessario instalar Python, SQLite ou dependencias Python na maquina do al
 
 ## Instalar a partir do GitHub
 
-Depois que este projeto estiver publicado no GitHub, use:
+Clone o repositorio publicado no GitHub:
 
 ```bash
 git clone https://github.com/rodrigorosamuniz/lab-protecao-dados.git
