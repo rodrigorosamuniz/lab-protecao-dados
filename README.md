@@ -7,6 +7,8 @@ Este laboratorio demonstra conceitos de protecao de dados em bancos de dados usa
 - Pseudo-anonimizacao reversivel apenas com uma tabela de mapeamento.
 - Simulacao didatica de Transparent Data Encryption (TDE).
 
+Repositorio: https://github.com/rodrigorosamuniz/lab-protecao-dados
+
 ## Materiais do projeto
 
 - [INSTRUCTIONS.md](./INSTRUCTIONS.md): roteiro de instalacao, execucao e uso interativo.
@@ -36,8 +38,8 @@ Nao e necessario instalar Python, SQLite ou dependencias Python na maquina do al
 Depois que este projeto estiver publicado no GitHub, use:
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
-cd <PASTA_DO_REPOSITORIO>
+git clone https://github.com/rodrigorosamuniz/lab-protecao-dados.git
+cd lab-protecao-dados
 ```
 
 Se voce recebeu os arquivos por outro meio, apenas entre na pasta onde estao `Dockerfile`, `README.md` e `src/`.
