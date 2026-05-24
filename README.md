@@ -1,41 +1,41 @@
-# Lab de Protecao de Dados com SQLite
+# Lab de Proteção de Dados com SQLite
 
-Este laboratorio demonstra conceitos de protecao de dados em bancos de dados usando Python e SQLite:
+Este laboratório demonstra conceitos de proteção de dados em bancos de dados usando Python e SQLite:
 
 - Data Redaction, ou mascaramento em tempo de exibicao.
-- Anonimizacao irreversivel.
-- Pseudo-anonimizacao reversivel apenas com uma tabela de mapeamento.
-- Simulacao didatica de Transparent Data Encryption (TDE).
+- Anonimização irreversível.
+- Pseudo-anonimização reversível apenas com uma tabela de mapeamento.
+- Simulação didática de Transparent Data Encryption (TDE).
 
-Repositorio: https://github.com/rodrigorosamuniz/lab-protecao-dados
+Repositório: https://github.com/rodrigorosamuniz/lab-proteção-dados
 
 ## Materiais do projeto
 
-- [INSTRUCTIONS.md](./INSTRUCTIONS.md): roteiro de instalacao, execucao e uso interativo.
-- [QUERIES.md](./QUERIES.md): queries prontas para praticar no SQLite.
-- [EXERCISES.md](./EXERCISES.md): exercicios para alunos responderem durante a aula.
-- [DIAGRAM.md](./DIAGRAM.md): diagrama do fluxo de protecao dos dados.
+- [INSTRUCTIONS.md](./INSTRUCTIONS.md): roteiro de instalação, execução e uso interativo.
+- [QUERIES.md](./QUERIES.md): queries prontas para práticar no SQLite.
+- [EXERCISES.md](./EXERCISES.md): exercícios para alunos responderem durante a aula.
+- [DIAGRAM.md](./DIAGRAM.md): diagrama do fluxo de proteção dos dados.
 
 ## Aviso importante sobre TDE
 
-SQLite nao possui TDE nativo. Neste lab, a parte de TDE e uma simulacao educacional: os campos sensiveis sao criptografados pela aplicacao antes de serem gravados e descriptografados em runtime apenas por uma rotina autorizada.
+SQLite nao possui TDE nativo. Neste lab, a parte de TDE e uma simulação educacional: os campos sensíveis sao criptografados pela aplicação antes de serem gravados e descriptografados em runtime apenas por uma rotina autorizada.
 
-Para reduzir troubleshooting em sala, a simulacao usa apenas bibliotecas padrao do Python. A cifra usada no exemplo serve para demonstrar o fluxo de dados cifrados em repouso; nao deve ser usada em producao.
+Para reduzir troubleshooting em sala, a simulação usa apenas bibliotecas padrao do Python. A cifra usada no exemplo serve para demonstrar o fluxo de dados cifrados em repouso; nao deve ser usada em produção.
 
-Em producao, TDE real normalmente e fornecido pelo SGBD ou por uma extensao/produto especifico, com gestao de chaves, controle de acesso, auditoria e rotacao de chaves.
+Em produção, TDE real normalmente e fornecido pelo SGBD ou por uma extensao/produto especifico, com gestao de chaves, controle de acesso, auditoria e rotação de chaves.
 
-## Pre-requisitos
+## Pré-requisitos
 
-Para a execucao recomendada, instale:
+Para a execução recomendada, instale:
 
 - Docker Desktop, Docker Engine ou ambiente equivalente com suporte a `docker build` e `docker run`.
 - Git, caso voce queira clonar este projeto a partir do GitHub.
 
-Nao e necessario instalar Python, SQLite ou dependencias Python na maquina do aluno quando usar Docker.
+Nao e necessário instalar Python, SQLite ou dependencias Python na maquina do aluno quando usar Docker.
 
 ## Instalar a partir do GitHub
 
-Clone o repositorio publicado no GitHub:
+Clone o repositório publicado no GitHub:
 
 ```bash
 git clone https://github.com/rodrigorosamuniz/lab-protecao-dados.git
@@ -52,15 +52,15 @@ Construa a imagem:
 docker build -t lab-protecao-dados .
 ```
 
-Execute o laboratorio completo:
+Execute o laboratório completo:
 
 ```bash
 docker run --rm lab-protecao-dados
 ```
 
-Esse modo imprime todas as secoes no terminal: banco original, mascaramento, anonimizacao, pseudo-anonimizacao e TDE simulado.
+Esse modo imprime todas as seções no terminal: banco original, mascaramento, anonimização, pseudo-anonimização e TDE simulado.
 
-Para executar apenas uma secao:
+Para executar apenas uma seção:
 
 ```bash
 docker run --rm lab-protecao-dados python -m src.main --section redaction
@@ -77,7 +77,7 @@ Use este modo para entrar no container, recriar o banco e testar queries manualm
 docker run --rm -it lab-protecao-dados sh
 ```
 
-Dentro do container, gere o banco e as tabelas de demonstracao:
+Dentro do container, gere o banco e as tabelas de demonstração:
 
 ```bash
 python -m src.main
@@ -130,9 +130,9 @@ python -m src.main
 
 Se o comando `python` nao existir no seu sistema, use `python3`.
 
-O script recria o arquivo `demo_protecao_dados.db` a cada execucao para manter o lab previsivel.
+O script recria o arquivo `demo_protecao_dados.db` a cada execução para manter o lab previsivel.
 
-Tambem e possivel executar apenas uma secao localmente:
+Tambem e possível executar apenas uma seção localmente:
 
 ```bash
 python -m src.main --section redaction
@@ -141,7 +141,7 @@ python -m src.main --section pseudonymization
 python -m src.main --section tde
 ```
 
-## Observacao sobre queries de TDE
+## Observação sobre queries de TDE
 
 No SQLite interativo, voce consegue consultar os dados cifrados armazenados na tabela `funcionarios_tde_simulado`. A descriptografia autorizada do TDE simulado acontece no Python, nao no motor SQLite. Por isso:
 

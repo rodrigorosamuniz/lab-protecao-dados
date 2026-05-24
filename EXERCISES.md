@@ -1,8 +1,8 @@
-# Exercicios do Laboratorio
+# Exercícios do Laboratório
 
-Use estes exercicios depois de executar o laboratorio e abrir o banco no SQLite.
+Use estes exercícios depois de executar o laboratório e abrir o banco no SQLite.
 
-## Preparacao
+## Preparação
 
 ```bash
 docker build -t lab-protecao-dados .
@@ -27,7 +27,7 @@ No SQLite:
 
 3. Ordene os funcionarios por `salario` do maior para o menor.
 
-4. Responda: por que salario e data de nascimento tambem podem ser sensiveis mesmo quando nao sao identificadores unicos?
+4. Responda: por que salário e data de nascimento tambem podem ser sensíveis mesmo quando nao sao identificadores únicos?
 
 ## Parte 2: Mascaramento
 
@@ -55,7 +55,7 @@ JOIN vw_funcionarios_mascarados v ON v.id = f.id;
 
 4. Cite um cenario em que mascaramento e melhor do que remover o dado.
 
-## Parte 3: Anonimizacao
+## Parte 3: Anonimização
 
 1. Consulte a tabela anonimizada:
 
@@ -74,9 +74,9 @@ GROUP BY decada_nascimento;
 
 3. Responda: quais dados foram removidos ou generalizados?
 
-4. Responda: por que essa tecnica e adequada para compartilhar uma base em uma aula ou relatorio estatistico?
+4. Responda: por que essa técnica e adequada para compartilhar uma base em uma aula ou relatorio estatistico?
 
-## Parte 4: Pseudo-anonimizacao
+## Parte 4: Pseudo-anonimização
 
 1. Consulte a tabela pseudo-anonimizada:
 
@@ -105,9 +105,9 @@ JOIN mapa_pseudonimos m ON m.pseudonimo_id = p.pseudonimo_id
 WHERE p.pseudonimo_id = 'ID_CRIPT_001';
 ```
 
-4. Responda: por que pseudo-anonimizacao ainda deve ser tratada como dado pessoal?
+4. Responda: por que pseudo-anonimização ainda deve ser tratada como dado pessoal?
 
-5. Responda: que controles voce aplicaria sobre a tabela `mapa_pseudonimos` em producao?
+5. Responda: que controles voce aplicaria sobre a tabela `mapa_pseudonimos` em produção?
 
 ## Parte 5: TDE simulado
 
@@ -129,7 +129,7 @@ SELECT id, cpf_criptografado, email_criptografado, salario_criptografado
 FROM funcionarios_tde_simulado;
 ```
 
-3. Saia do SQLite e rode apenas a secao de TDE:
+3. Saia do SQLite e rode apenas a seção de TDE:
 
 ```sql
 .exit
@@ -141,22 +141,22 @@ python -m src.main --section tde
 
 4. Responda: qual e a diferenca entre ver o dado cifrado no SQLite e ver o dado descriptografado pela rotina autorizada?
 
-5. Responda: por que este laboratorio chama essa parte de TDE simulado, e nao TDE real?
+5. Responda: por que este laboratório chama essa parte de TDE simulado, e nao TDE real?
 
-## Parte 6: Comparacao final
+## Parte 6: Comparação final
 
 Preencha a tabela:
 
-| Tecnica | Altera dado armazenado? | Permite reversao? | Uso indicado |
+| Técnica | Altera dado armazenado? | Permite reversao? | Uso indicado |
 | --- | --- | --- | --- |
 | Mascaramento |  |  |  |
-| Anonimizacao |  |  |  |
-| Pseudo-anonimizacao |  |  |  |
+| Anonimização |  |  |  |
+| Pseudo-anonimização |  |  |  |
 | TDE |  |  |  |
 
 ## Gabarito orientativo
 
-- Mascaramento protege a visualizacao, mas a tabela original continua com dados completos.
-- Anonimizacao remove ou generaliza identificadores e nao deve permitir reidentificacao pratica.
-- Pseudo-anonimizacao substitui identificadores por codigos, mas pode ser revertida com o mapa.
+- Mascaramento protege a visualização, mas a tabela original continua com dados completos.
+- Anonimização remove ou generaliza identificadores e nao deve permitir reidentificação prática.
+- Pseudo-anonimização substitui identificadores por códigos, mas pode ser revertida com o mapa.
 - TDE protege dados em repouso; neste lab o conceito e simulado com criptografia de campo em Python porque SQLite nao possui TDE nativo.

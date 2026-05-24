@@ -1,6 +1,6 @@
-# Diagrama do Fluxo de Protecao
+# Diagrama do Fluxo de Proteção
 
-Este diagrama resume o que acontece com os dados em cada tecnica do laboratorio.
+Este diagrama resume o que acontece com os dados em cada técnica do laboratório.
 
 ```mermaid
 flowchart LR
@@ -16,7 +16,7 @@ flowchart LR
 
 ## Leitura do diagrama
 
-- A tabela `funcionarios` representa o risco inicial: dados sensiveis em texto plano.
+- A tabela `funcionarios` representa o risco inicial: dados sensíveis em texto plano.
 - A view `vw_funcionarios_mascarados` mostra dados protegidos sem alterar a tabela original.
 - A tabela `funcionarios_anonimizados` remove ou generaliza identificadores.
 - A tabela `funcionarios_pseudo` usa pseudonimos; a reversao depende de `mapa_pseudonimos`.

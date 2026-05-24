@@ -1,4 +1,4 @@
-# Queries para Praticar
+# Queries para Práticar
 
 Este arquivo traz exemplos de queries para os alunos executarem manualmente dentro do container.
 
@@ -35,7 +35,7 @@ Liste as tabelas:
 .tables
 ```
 
-## 1. Dados originais sem protecao
+## 1. Dados originais sem proteção
 
 Consulta completa da tabela original:
 
@@ -61,7 +61,7 @@ ORDER BY salario DESC;
 
 ## 2. Mascaramento com SQL
 
-O mascaramento abaixo acontece apenas na saida da query. A tabela original continua armazenando os dados completos.
+O mascaramento abaixo acontece apenas na saída da query. A tabela original continua armazenando os dados completos.
 
 Consultar a view pronta de mascaramento:
 
@@ -82,7 +82,7 @@ SELECT
 FROM funcionarios;
 ```
 
-Mascarar salario por faixa e data de nascimento por ano:
+Mascarar salário por faixa e data de nascimento por ano:
 
 ```sql
 SELECT
@@ -109,7 +109,7 @@ SELECT
 FROM funcionarios;
 ```
 
-## 3. Anonimizacao
+## 3. Anonimização
 
 Consultar a tabela anonimizada:
 
@@ -147,7 +147,7 @@ SELECT pessoa_id, nome_generico, cpf, email, telefone
 FROM funcionarios_anonimizados;
 ```
 
-## 4. Pseudo-anonimizacao
+## 4. Pseudo-anonimização
 
 Consultar a tabela pseudo-anonimizada publica:
 
@@ -299,7 +299,7 @@ Rode novamente:
 python -m src.main
 ```
 
-Na secao `TDE simulado`, compare:
+Na seção `TDE simulado`, compare:
 
 - `SEM TDE`: dados em texto plano;
 - `COM TDE simulado, sem chave/autorizacao`: dados cifrados;

@@ -1,22 +1,22 @@
-# Instrucoes do Laboratorio
+# Instrucoes do Laboratório
 
 Este arquivo e um roteiro pratico para executar o lab e testar queries dentro do container Docker.
 
 Materiais complementares:
 
-- [QUERIES.md](./QUERIES.md): lista maior de queries prontas para pratica.
-- [EXERCISES.md](./EXERCISES.md): exercicios para responder durante a aula.
-- [DIAGRAM.md](./DIAGRAM.md): diagrama do fluxo de protecao.
+- [QUERIES.md](./QUERIES.md): lista maior de queries prontas para prática.
+- [EXERCISES.md](./EXERCISES.md): exercícios para responder durante a aula.
+- [DIAGRAM.md](./DIAGRAM.md): diagrama do fluxo de proteção.
 
 ## 1. Construir a imagem Docker
 
-No diretorio do projeto, onde estao `Dockerfile`, `README.md` e `src/`, execute:
+No diretório do projeto, onde estao `Dockerfile`, `README.md` e `src/`, execute:
 
 ```bash
 docker build -t lab-protecao-dados .
 ```
 
-## 2. Rodar o laboratorio automatico
+## 2. Rodar o laboratório automatico
 
 ```bash
 docker run --rm lab-protecao-dados
@@ -24,13 +24,13 @@ docker run --rm lab-protecao-dados
 
 Esse comando executa o script completo e mostra:
 
-- dados sensiveis em texto plano;
+- dados sensíveis em texto plano;
 - mascaramento em tempo de exibicao;
-- anonimizacao irreversivel;
-- pseudo-anonimizacao com tabela de mapeamento;
+- anonimização irreversível;
+- pseudo-anonimização com tabela de mapeamento;
 - TDE simulado com dados cifrados e descriptografia em runtime.
 
-Para executar apenas uma secao:
+Para executar apenas uma seção:
 
 ```bash
 docker run --rm lab-protecao-dados python -m src.main --section baseline
@@ -64,7 +64,7 @@ Abra o cliente SQLite:
 sqlite3 demo_protecao_dados.db
 ```
 
-## 4. Ver tabelas disponiveis
+## 4. Ver tabelas disponíveis
 
 Dentro do prompt do SQLite:
 
@@ -72,28 +72,28 @@ Dentro do prompt do SQLite:
 .tables
 ```
 
-Tabelas principais:
+Tabelas principaís:
 
 - `funcionarios`: dados originais em texto plano.
 - `vw_funcionarios_mascarados`: view que aplica mascaramento em SQL.
-- `funcionarios_anonimizados`: dados anonimizados irreversivelmente.
+- `funcionarios_anonimizados`: dados anonimizados irreversívelmente.
 - `funcionarios_pseudo`: dados pseudo-anonimizados.
 - `mapa_pseudonimos`: tabela secreta de reversao dos pseudonimos.
-- `funcionarios_plaintext`: copia em texto plano usada na comparacao com TDE.
+- `funcionarios_plaintext`: copia em texto plano usada na comparação com TDE.
 - `funcionarios_tde_simulado`: dados cifrados para simular TDE.
 
 O arquivo [QUERIES.md](./QUERIES.md) contem exemplos adicionais para cada uma dessas tabelas.
 
-## 5. Query sem protecao
+## 5. Query sem proteção
 
 ```sql
 SELECT id, nome_completo, cpf, email, telefone, salario, data_nascimento
 FROM funcionarios;
 ```
 
-O resultado mostra dados sensiveis em texto plano. Esse e o cenario de risco usado como base para comparar as tecnicas.
+O resultado mostra dados sensíveis em texto plano. Esse e o cenario de risco usado como base para comparar as técnicas.
 
-## 6. Query de anonimizacao
+## 6. Query de anonimização
 
 ```sql
 SELECT pessoa_id, nome_generico, cpf, email, telefone,
@@ -101,9 +101,9 @@ SELECT pessoa_id, nome_generico, cpf, email, telefone,
 FROM funcionarios_anonimizados;
 ```
 
-Essa tabela remove identificadores diretos e generaliza informacoes. Ela nao possui a relacao direta com a pessoa original.
+Essa tabela remove identificadores diretos e generaliza informações. Ela nao possui a relação direta com a pessoa original.
 
-## 7. Query de pseudo-anonimizacao
+## 7. Query de pseudo-anonimização
 
 Tabela publica pseudo-anonimizada:
 
@@ -112,14 +112,14 @@ SELECT pseudonimo_id, email_dominio, faixa_salarial, ano_nascimento
 FROM funcionarios_pseudo;
 ```
 
-Tabela de mapeamento, que deve ser protegida em producao:
+Tabela de mapeamento, que deve ser protegida em produção:
 
 ```sql
 SELECT pseudonimo_id, funcionario_id, nome_completo, cpf, email, telefone
 FROM mapa_pseudonimos;
 ```
 
-Reidentificacao usando o mapa:
+Reidentificação usando o mapa:
 
 ```sql
 SELECT p.pseudonimo_id, m.nome_completo, m.cpf, p.faixa_salarial
@@ -148,7 +148,7 @@ A descriptografia autorizada nao acontece diretamente no SQLite deste lab. Ela a
 python -m src.main
 ```
 
-Na secao `TDE simulado`, o script mostra:
+Na seção `TDE simulado`, o script mostra:
 
 - query em texto plano sem TDE;
 - query com dados cifrados;
@@ -164,14 +164,14 @@ Para ver o mascaramento:
 python -m src.main
 ```
 
-Na secao `Data Redaction`, compare:
+Na seção `Data Redaction`, compare:
 
 - `Dados originais`;
 - `Dados mascarados em runtime`.
 
 No SQLite puro, a tabela `funcionarios` continua com os dados originais. Isso demonstra a diferenca entre proteger a exibicao e modificar o dado armazenado.
 
-Tambem existe uma view para praticar mascaramento diretamente em SQL:
+Tambem existe uma view para práticar mascaramento diretamente em SQL:
 
 ```sql
 SELECT *
@@ -192,22 +192,22 @@ Para sair do container:
 exit
 ```
 
-## 12. Limitacoes didaticas
+## 12. Limitações didáticas
 
 - SQLite nao possui TDE nativo.
-- A cifra usada no lab e apenas didatica e usa bibliotecas padrao do Python para evitar troubleshooting em sala.
-- Em producao, use TDE real do SGBD ou criptografia robusta com gestao de chaves, KMS/HSM, rotacao, controle de acesso e auditoria.
-- Pseudo-anonimizacao ainda e dado pessoal quando existe uma tabela de mapeamento.
-- Mascaramento protege a visualizacao, mas nao remove o dado sensivel do banco.
+- A cifra usada no lab e apenas didática e usa bibliotecas padrao do Python para evitar troubleshooting em sala.
+- Em produção, use TDE real do SGBD ou criptografia robusta com gestao de chaves, KMS/HSM, rotação, controle de acesso e auditoria.
+- Pseudo-anonimização ainda e dado pessoal quando existe uma tabela de mapeamento.
+- Mascaramento protege a visualização, mas nao remove o dado sensível do banco.
 
-## 13. Material de pratica
+## 13. Material de prática
 
-Use [QUERIES.md](./QUERIES.md) como folha de exercicios para os alunos. Ele inclui queries para:
+Use [QUERIES.md](./QUERIES.md) como folha de exercícios para os alunos. Ele inclui queries para:
 
-- consultar dados originais sem protecao;
+- consultar dados originais sem proteção;
 - aplicar mascaramento diretamente em SQL;
 - analisar a tabela anonimizada;
-- comparar pseudo-anonimizacao com e sem tabela de mapeamento;
+- comparar pseudo-anonimização com e sem tabela de mapeamento;
 - consultar dados cifrados do TDE simulado;
 - entender por que a descriptografia autorizada acontece no Python neste lab.
 
